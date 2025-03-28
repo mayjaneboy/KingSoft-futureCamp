@@ -31,4 +31,7 @@ func main() {
 	err2 := fmt.Errorf("错误信息: %w", err)
 	fmt.Println(err2)
 
+	if err1 := doSomething(); err1 != nil {
+		fmt.Println(err1)
+	}
 }
