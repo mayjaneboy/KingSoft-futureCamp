@@ -1,6 +1,9 @@
 package main // 声明包名
 
-import "fmt" // 导入格式化输出包
+import (
+	"fmt"
+	"unicode"
+) // 导入格式化输出包
 
 // main 函数是程序执行的入口
 func main() {
@@ -39,4 +42,22 @@ func main() {
 		Wednesday
 	)
 	fmt.Println(Monday, Tuesday, Wednesday)
+
+	// 判断字符是否为字母
+	fmt.Println(unicode.IsLetter('A')) // true
+	fmt.Println(unicode.IsLetter('中')) // true
+	fmt.Println(unicode.IsLetter('1')) // false
+
+	// 判断字符是否为数字
+	fmt.Println(unicode.IsDigit('5')) // true
+
+	// 判断字符是否为空白符
+	fmt.Println(unicode.IsSpace(' '))  // true
+	fmt.Println(unicode.IsSpace('\t')) // true
+
+	// 大小写转换
+	fmt.Println(string(unicode.ToUpper('a'))) // A
+	fmt.Println(string(unicode.ToLower('A'))) // a
+
+	//在 Go 中，布尔值不能与整数进行转换，也不能用于算术运算
 }
