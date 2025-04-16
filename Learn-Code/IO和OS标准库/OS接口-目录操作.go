@@ -55,15 +55,23 @@ func main() {
 
 	// 读取目录内容
 	fmt.Println("\n读取顶层目录内容:")
-	entries, err := os.ReadDir("testdir")
+	entries, err := os.ReadDir(".")
 	if err != nil {
 		fmt.Println("读取目录错误:", err)
 		return
 	}
-
+	//遍历目录项
 	for _, entry := range entries {
-		info, _ := entry.Info()
-		fmt.Printf("%-20s %-10v %8d 字节\n", entry.Name(), entry.IsDir(), info.Size())
+		info, err := entry.Info()
+		if err != nil {
+			fmt.Printf("获取 %s 的信息失败: %v\n", entry.Name(), err)
+			continue
+		}
+		// 打印文件信息
+		fmt.Printf("名称: %-20s 大小: %-10d 修改时间: %s\n",
+			entry.Name(),
+			info.Size(),
+			info.ModTime().Format("2006-01-02 15:04:05"))
 	}
 
 	// 清理：删除目录及其内容
